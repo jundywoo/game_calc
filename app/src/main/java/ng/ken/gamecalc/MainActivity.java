@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final Big2Game big2Game = new Big2Game();
+    private final Big2Game big2Game = new Big2Game(this);
     private final ScoresAdapter adapter = new ScoresAdapter(this, big2Game);
 
     @Override
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        big2Game.loadScores();
         this.<ListView>findViewById(R.id.scores_grid).setAdapter(adapter);
     }
 

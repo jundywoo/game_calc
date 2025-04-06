@@ -9,6 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="13sp"
         android:text="@string/add_a_game" />
 
     <EditText

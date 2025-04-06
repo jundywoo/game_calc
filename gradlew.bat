@@ -21,6 +21,8 @@
 @rem
 @rem ##########################################################################
 
+set JAVA_HOME="D:\swdtools\idea\android-studio-2025.1.1.3-windows\jbr"
+
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
 

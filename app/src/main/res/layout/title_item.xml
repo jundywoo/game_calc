@@ -9,6 +9,7 @@
         android:id="@+id/new_game_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="13sp"
         android:text="@string/new_game_text" />
 
     <TextView
@@ -21,7 +22,7 @@
         android:text="@string/cissy"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="17sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/title_k"
@@ -33,7 +34,7 @@
         android:text="@string/kennie"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="17sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/title_t"
@@ -45,7 +46,7 @@
         android:text="@string/thomas"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="17sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/title_h"
@@ -57,5 +58,5 @@
         android:text="@string/hinks"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="17sp" />
+        android:textSize="13sp" />
 </LinearLayout>
