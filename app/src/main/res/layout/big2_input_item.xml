@@ -13,28 +13,28 @@
         android:text="@string/add_a_game" />
 
     <EditText
-        android:id="@+id/input1"
+        android:id="@+id/score_c"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/input2"
+        android:id="@+id/score_k"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/input3"
+        android:id="@+id/score_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/input4"
+        android:id="@+id/score_h"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

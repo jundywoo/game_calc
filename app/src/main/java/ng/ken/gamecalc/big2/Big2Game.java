@@ -1,10 +1,13 @@
-package ng.ken.gamecalc;
+package ng.ken.gamecalc.big2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.Arrays;
 
+import lombok.Getter;
+
+@Getter
 public class Big2Game {
 
     private static final String PREFS_NAME = "Big2GamePrefs";
@@ -16,15 +19,6 @@ public class Big2Game {
 
     public Big2Game(Context context) {
         this.context = context;
-    }
-
-
-    public int[][] getScores() {
-        return scores;
-    }
-
-    public int[] getSum() {
-        return sum;
     }
 
     public void removeScore(int position) {
@@ -41,8 +35,8 @@ public class Big2Game {
 
     public void addScore(int[] score) {
         int[][] newScores = new int[scores.length + 1][];
-        System.arraycopy(scores, 0, newScores, 0, scores.length);
-        newScores[scores.length] = score;
+        System.arraycopy(scores, 0, newScores, 1, scores.length);
+        newScores[0] = score;
         scores = newScores;
         summarizeScores();
     }

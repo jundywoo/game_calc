@@ -1,12 +1,16 @@
 <resources>
-    <string name="app_name">锄大D计分</string>
+    <string name="app_name">游戏计分</string>
     <string name="new_game_text">重开</string>
     <string name="sum_line">总分</string>
     <string name="remove_line">删除</string>
     <string name="add_a_game">计分</string>
     <string name="action"> + </string>
+
     <string name="cissy">Cissy</string>
     <string name="kennie">Kennie</string>
     <string name="thomas">Thomas</string>
     <string name="hinks">Hinks</string>
+
+    <string name="upgrade_a_game">升级</string>
+    <string name="default_level"> A </string>
 </resources>
