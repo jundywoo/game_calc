@@ -1,8 +1,9 @@
 package ng.ken.gamecalc.big2;
 
-import android.app.AlertDialog;
+import static ng.ken.gamecalc.utils.DialogUtils.confirm;
+import static ng.ken.gamecalc.utils.DialogUtils.warning;
+
 import android.content.Context;
-import android.content.DialogInterface.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +107,7 @@ public class Big2ScoresAdapter extends BaseAdapter {
             // Title
             view = LayoutInflater.from(context).inflate(R.layout.big2_title_item, parent, false);
             Button newButton = view.findViewById(R.id.new_game_button);
-            newButton.setOnClickListener(v -> confirm("开始新游戏？", (a, b) -> {
+            newButton.setOnClickListener(v -> confirm(context, "開始新遊戲？", (a, b) -> {
                 big2Game.cleanScores();
                 notifyDataSetChanged();
             }));
@@ -124,17 +125,11 @@ public class Big2ScoresAdapter extends BaseAdapter {
 
             addButton.setOnClickListener(v -> {
                 int[] newScore = getAnInt(view);
-                if (!Arrays.stream(newScore).anyMatch(a -> a == 0)) {
-                    new AlertDialog.Builder(context)
-                            .setTitle("至少一个赢家分数为零")
-                            .setPositiveButton("明白", null)
-                            .show();
+                if (Arrays.stream(newScore).noneMatch(a -> a == 0)) {
+                    warning(context, "最少一個贏家分數為零", "明白");
                     return;
-                } else if (!Arrays.stream(newScore).anyMatch(a -> a > 0)) {
-                    new AlertDialog.Builder(context)
-                            .setTitle("至少一个赢家被记分数")
-                            .setPositiveButton("明白", null)
-                            .show();
+                } else if (Arrays.stream(newScore).noneMatch(a -> a > 0)) {
+                    warning(context, "最少一個赢家被記分数", "明白");
                     return;
                 }
                 big2Game.addScore(newScore);
@@ -149,7 +144,7 @@ public class Big2ScoresAdapter extends BaseAdapter {
 
             Button deleteButton = view.findViewById(R.id.delete_button);
             deleteButton.setVisibility(View.VISIBLE);
-            deleteButton.setOnClickListener(v -> confirm("确定删除？", (a, b) -> {
+            deleteButton.setOnClickListener(v -> confirm(context, "確定刪除？", (a, b) -> {
                 big2Game.removeScore(line);
                 notifyDataSetChanged();
             }));
@@ -158,11 +153,5 @@ public class Big2ScoresAdapter extends BaseAdapter {
         return view;
     }
 
-    private void confirm(String title, OnClickListener listener) {
-        new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setPositiveButton("是", listener)
-                .setNegativeButton("否", null)
-                .show();
-    }
+
 }

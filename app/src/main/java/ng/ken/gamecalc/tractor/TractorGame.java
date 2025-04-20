@@ -46,7 +46,9 @@ public class TractorGame {
     }
 
     public void upgrade(String player, int team, int side) {
-        levels[team] = LEVEL_MAP.get(levels[team]);
+        if (this.team == team) {
+            levels[team] = LEVEL_MAP.get(levels[team]);
+        }
         this.host = player;
         this.sides[team] = side;
         this.team = team;
@@ -55,7 +57,7 @@ public class TractorGame {
     }
 
     public void resetLevel() {
-        levels[0] = levels[1] = "A";
+        levels[0] = levels[1] = "2";
         saveScores();
     }
 
@@ -76,7 +78,7 @@ public class TractorGame {
         team = prefs.getInt(HOST_TEAM, 0);
         String[] split = prefs.getString(HOST_SIDE, "0,0").split(",");
         IntStream.range(0, 2).forEach(i -> sides[i] = Integer.parseInt(split[i]));
-        String savedLevel = prefs.getString(LEVEL_KEY, "A,A");
+        String savedLevel = prefs.getString(LEVEL_KEY, "2,2");
         String[] levels = savedLevel.split(",");
         this.levels[0] = levels[0];
         this.levels[1] = levels[1];

@@ -1,6 +1,7 @@
 package ng.ken.gamecalc;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +20,9 @@ import ng.ken.gamecalc.tractor.TractorFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String PREFS_NAME = "AppPreferences";
+    private static final String LAST_TAB_INDEX = "LastTabIndex";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +35,30 @@ public class MainActivity extends AppCompatActivity {
         // 设置 ViewPager 的适配器
         viewPager.setAdapter(new ViewPagerAdapter(this));
 
+        // 读取上次保存的标签页索引
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int lastTabIndex = preferences.getInt(LAST_TAB_INDEX, 0); // 默认加载第一个标签页
+        viewPager.setCurrentItem(lastTabIndex, false);
+
         // 将 TabLayout 和 ViewPager2 绑定
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             if (position == 0) {
-                tab.setText("锄大D");
+                tab.setText("鋤大D");
             } else if (position == 1) {
-                tab.setText("拖拉机");
+                tab.setText("拖拉機");
             }
         }).attach();
+
+        // 监听标签页切换并保存当前索引
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(LAST_TAB_INDEX, position);
+                editor.apply();
+            }
+        });
     }
 
     // ViewPager2 的适配器

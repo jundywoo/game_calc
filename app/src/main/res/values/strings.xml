@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">游戏计分</string>
-    <string name="new_game_text">重开</string>
-    <string name="sum_line">总分</string>
-    <string name="remove_line">删除</string>
-    <string name="add_a_game">计分</string>
+    <string name="app_name">遊戲積分</string>
+    <string name="new_game_text">重開</string>
+    <string name="sum_line">總分</string>
+    <string name="remove_line">刪除</string>
+    <string name="add_a_game">計分</string>
     <string name="action"> + </string>
 
     <string name="cissy">Cissy</string>
@@ -11,6 +11,8 @@
     <string name="thomas">Thomas</string>
     <string name="hinks">Hinks</string>
 
-    <string name="upgrade_a_game">升级</string>
+    <string name="upgrade_a_game">升級</string>
     <string name="default_level"> A </string>
+    <string name="tractor_score">本局得分</string>
+    <string name="upgrade_game">計分</string>
 </resources>
