@@ -6,56 +6,52 @@
     android:background="#000000">
 
     <Button
-        android:id="@+id/new_game_button"
+        android:id="@+id/sum_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
-        android:text="@string/new_game_text" />
+        android:text="@string/sum_up" />
 
     <TextView
-        android:id="@+id/title_c"
+        android:id="@+id/player_c"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp"
-        android:text="@string/cissy"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="13sp" />
 
     <TextView
-        android:id="@+id/title_k"
+        android:id="@+id/player_k"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp"
-        android:text="@string/kennie"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="13sp" />
 
     <TextView
-        android:id="@+id/title_t"
+        android:id="@+id/player_t"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp"
-        android:text="@string/thomas"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="13sp" />
 
     <TextView
-        android:id="@+id/title_h"
+        android:id="@+id/player_h"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp"
-        android:text="@string/hinks"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="13sp" />

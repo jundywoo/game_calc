@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">遊戲積分</string>
+    <string name="sum_up">結算</string>
     <string name="new_game_text">重開</string>
     <string name="sum_line">總分</string>
     <string name="remove_line">刪除</string>
-    <string name="add_a_game">計分</string>
+    <string name="add_a_game">計</string>
     <string name="action"> + </string>
 
-    <string name="cissy">Cissy</string>
-    <string name="kennie">Kennie</string>
-    <string name="thomas">Thomas</string>
-    <string name="hinks">Hinks</string>
+    <string name="cissy">C</string>
+    <string name="kennie">K</string>
+    <string name="thomas">T</string>
+    <string name="hinks">H</string>
 
     <string name="upgrade_a_game">升級</string>
     <string name="default_level"> A </string>

@@ -1,6 +1,19 @@
 package ng.ken.gamecalc.big2;
 
+import static ng.ken.gamecalc.big2.Big2Helper.getAnInt;
+import static ng.ken.gamecalc.big2.Big2Helper.setScore;
+import static ng.ken.gamecalc.big2.Big2Helper.setSummary;
+import static ng.ken.gamecalc.big2.Big2Helper.setTitle;
+import static ng.ken.gamecalc.big2.Big2Helper.sumUpView;
+import static ng.ken.gamecalc.utils.Constants.BIG2_AT_LEASE_ONE_SCORED;
+import static ng.ken.gamecalc.utils.Constants.BIG2_AT_LEASE_ONE_ZERO;
+import static ng.ken.gamecalc.utils.Constants.BIG2_CONFIRM_REMOVE;
+import static ng.ken.gamecalc.utils.Constants.BIG2_NEW_A_GAME;
+import static ng.ken.gamecalc.utils.Constants.BIG2_SCORE_SUMMARY;
+import static ng.ken.gamecalc.utils.Constants.BIG2_SEE_MORE;
+import static ng.ken.gamecalc.utils.Constants.UNDERSTOOD;
 import static ng.ken.gamecalc.utils.DialogUtils.confirm;
+import static ng.ken.gamecalc.utils.DialogUtils.confirmWithView;
 import static ng.ken.gamecalc.utils.DialogUtils.warning;
 
 import android.content.Context;
@@ -9,8 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -18,63 +29,12 @@ import ng.ken.gamecalc.R;
 
 public class Big2ScoresAdapter extends BaseAdapter {
 
-    private final static int[] PLAYERS = new int[]{
-            R.id.score_c, R.id.score_k, R.id.score_t, R.id.score_h
-    };
-
     private final Context context;
     private final Big2Game big2Game;
 
     public Big2ScoresAdapter(Context context, Big2Game big2Game) {
         this.context = context;
         this.big2Game = big2Game;
-    }
-
-    private static int[] getAnInt(View view) {
-        int[] scores = new int[4];
-        for (int i = 0; i < PLAYERS.length; i++) {
-            EditText input = view.findViewById(PLAYERS[i]);
-            try {
-                scores[i] = Integer.parseInt(input.getText().toString());
-            } catch (Exception e) {
-                scores[i] = 0;
-            }
-        }
-        return scores;
-    }
-
-    private static void setSummary(View view, int[] sums) {
-        for (int i = 0; i < 4; i++) {
-            TextView text = view.findViewById(PLAYERS[i]);
-            int sum = sums[i];
-            text.setText(String.valueOf(sum));
-            if (70 <= sum && sum < 85) {
-                text.setBackgroundColor(0xFFFFFF00);
-            } else if (85 <= sum && sum < 100) {
-                text.setBackgroundColor(0xFFFFA500);
-            } else if (sum >= 100) {
-                text.setBackgroundColor(0xFFFF0000);
-            } else {
-                text.setBackgroundColor(0x00000000);
-            }
-        }
-    }
-
-    private static void setScore(View view, int[] scores) {
-        for (int i = 0; i < PLAYERS.length; i++) {
-            TextView text = view.findViewById(PLAYERS[i]);
-            int score = scores[i];
-            text.setText(String.valueOf(score));
-            if (16 <= score && score < 30) {
-                text.setBackgroundColor(0xFFFFFF00);
-            } else if (30 <= score && score < 52) {
-                text.setBackgroundColor(0xFFFFA500);
-            } else if (score >= 52) {
-                text.setBackgroundColor(0xFFFF0000);
-            } else {
-                text.setBackgroundColor(0x00000000);
-            }
-        }
     }
 
     @Override
@@ -106,11 +66,9 @@ public class Big2ScoresAdapter extends BaseAdapter {
         if (position == 0) {
             // Title
             view = LayoutInflater.from(context).inflate(R.layout.big2_title_item, parent, false);
-            Button newButton = view.findViewById(R.id.new_game_button);
-            newButton.setOnClickListener(v -> confirm(context, "開始新遊戲？", (a, b) -> {
-                big2Game.cleanScores();
-                notifyDataSetChanged();
-            }));
+            setTitle(view);
+            Button newButton = view.findViewById(R.id.sum_up_button);
+            newButton.setOnClickListener(this::sumUpGame);
         } else if (position == 1) {
             // Line of summary
             view = LayoutInflater.from(context).inflate(R.layout.big2_sum_item, parent, false);
@@ -126,10 +84,10 @@ public class Big2ScoresAdapter extends BaseAdapter {
             addButton.setOnClickListener(v -> {
                 int[] newScore = getAnInt(view);
                 if (Arrays.stream(newScore).noneMatch(a -> a == 0)) {
-                    warning(context, "最少一個贏家分數為零", "明白");
+                    warning(context, BIG2_AT_LEASE_ONE_ZERO, UNDERSTOOD);
                     return;
                 } else if (Arrays.stream(newScore).noneMatch(a -> a > 0)) {
-                    warning(context, "最少一個赢家被記分数", "明白");
+                    warning(context, BIG2_AT_LEASE_ONE_SCORED, UNDERSTOOD);
                     return;
                 }
                 big2Game.addScore(newScore);
@@ -144,7 +102,7 @@ public class Big2ScoresAdapter extends BaseAdapter {
 
             Button deleteButton = view.findViewById(R.id.delete_button);
             deleteButton.setVisibility(View.VISIBLE);
-            deleteButton.setOnClickListener(v -> confirm(context, "確定刪除？", (a, b) -> {
+            deleteButton.setOnClickListener(v -> confirm(context, BIG2_CONFIRM_REMOVE, (a, b) -> {
                 big2Game.removeScore(line);
                 notifyDataSetChanged();
             }));
@@ -153,5 +111,20 @@ public class Big2ScoresAdapter extends BaseAdapter {
         return view;
     }
 
+
+    private void sumUpGame(View view) {
+        confirmWithView(
+                context,
+                BIG2_SCORE_SUMMARY,
+                sumUpView(context, big2Game.getSum()),
+                BIG2_NEW_A_GAME,
+                (a, b) -> {
+                    big2Game.cleanScores();
+                    notifyDataSetChanged();
+                },
+                BIG2_SEE_MORE,
+                null
+        );
+    }
 
 }
