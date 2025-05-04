@@ -1,5 +1,7 @@
 package ng.ken.gamecalc.tractor;
 
+import static ng.ken.gamecalc.utils.Constants.NAME_KENNIE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -8,7 +10,6 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 import lombok.Getter;
-import ng.ken.gamecalc.R;
 
 @Getter
 public class TractorGame {
@@ -74,7 +75,7 @@ public class TractorGame {
 
     public void loadScores() {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        host = prefs.getString(HOST_KEY, context.getResources().getString(R.string.kennie));
+        host = prefs.getString(HOST_KEY, NAME_KENNIE);
         team = prefs.getInt(HOST_TEAM, 0);
         String[] split = prefs.getString(HOST_SIDE, "0,0").split(",");
         IntStream.range(0, 2).forEach(i -> sides[i] = Integer.parseInt(split[i]));

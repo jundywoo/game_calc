@@ -1,8 +1,9 @@
 package ng.ken.gamecalc.utils;
 
-import androidx.annotation.NonNull;
+import static ng.ken.gamecalc.utils.Constants.BIG2_SCORE_SUMMARY;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,12 @@ public class StringHelper {
         return DECIMAL_FORMAT_MAX_2_DIGITS.format(avg);
     }
 
-    public static String toHumanAvgAndsum(double avg, int sum) {
-        return String.format("%s / %d", DECIMAL_FORMAT_MAX_2_DIGITS.format(avg - sum), sum);
+    public static String getBig2Title(double avg) {
+        return String.format(Locale.getDefault(), "%s (平均: %s)", BIG2_SCORE_SUMMARY, DECIMAL_FORMAT_MAX_2_DIGITS.format(avg));
+    }
+
+    public static String toHumanAvgAndSum(double avg, int sum) {
+        return String.format(Locale.getDefault(), "%s - %d", DECIMAL_FORMAT_MAX_2_DIGITS.format(avg - sum), sum);
     }
 
     public static String getLevelUpTitle(int levelUp) {

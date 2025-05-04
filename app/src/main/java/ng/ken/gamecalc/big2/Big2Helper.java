@@ -12,7 +12,7 @@ import static ng.ken.gamecalc.utils.Constants.BIG2_PLAYERS;
 import static ng.ken.gamecalc.utils.Constants.SCORES;
 import static ng.ken.gamecalc.utils.Constants.getName;
 import static ng.ken.gamecalc.utils.Constants.getNameById;
-import static ng.ken.gamecalc.utils.StringHelper.toHumanAvgAndsum;
+import static ng.ken.gamecalc.utils.StringHelper.toHumanAvgAndSum;
 import static ng.ken.gamecalc.utils.StringHelper.toHumanDigits;
 
 import android.content.Context;
@@ -24,8 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import java.util.Arrays;
 
 public class Big2Helper {
 
@@ -81,7 +79,7 @@ public class Big2Helper {
     }
 
 
-    public static View sumUpView(Context context, int[] sums) {
+    public static View sumUpView(Context context, int[] sums, double avg) {
         LinearLayout rootLayout = new LinearLayout(context);
         rootLayout.setOrientation(LinearLayout.VERTICAL);
         rootLayout.setPadding(16, 16, 16, 16);
@@ -98,12 +96,9 @@ public class Big2Helper {
 
         addRow(context, tableLayout, "玩家", "分數", true);
 
-        double avg = Arrays.stream(sums).average().orElse(0);
-        addRow(context, tableLayout, "平均分", toHumanDigits(avg), true);
-
         for (int i = 0; i < sums.length; i++) {
             int sum = sums[i];
-            addRow(context, tableLayout, getName(i), toHumanAvgAndsum(avg, sum), false);
+            addRow(context, tableLayout, getName(i), toHumanAvgAndSum(avg, sum), false);
         }
 
         return rootLayout;

@@ -7,13 +7,12 @@
     <string name="add_a_game">計</string>
     <string name="action"> + </string>
 
-    <string name="cissy">C</string>
-    <string name="kennie">K</string>
-    <string name="thomas">T</string>
-    <string name="hinks">H</string>
-
     <string name="upgrade_a_game">升級</string>
     <string name="default_level"> A </string>
     <string name="tractor_score">本局得分</string>
     <string name="upgrade_game">計分</string>
+
+    <string name="roll_dice"> 碌 </string>
+    <string name="reduce_dice"> - </string>
+    <string name="add_dice"> + </string>
 </resources>

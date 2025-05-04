@@ -9,7 +9,6 @@ import static ng.ken.gamecalc.utils.Constants.BIG2_AT_LEASE_ONE_SCORED;
 import static ng.ken.gamecalc.utils.Constants.BIG2_AT_LEASE_ONE_ZERO;
 import static ng.ken.gamecalc.utils.Constants.BIG2_CONFIRM_REMOVE;
 import static ng.ken.gamecalc.utils.Constants.BIG2_NEW_A_GAME;
-import static ng.ken.gamecalc.utils.Constants.BIG2_SCORE_SUMMARY;
 import static ng.ken.gamecalc.utils.Constants.BIG2_SEE_MORE;
 import static ng.ken.gamecalc.utils.Constants.UNDERSTOOD;
 import static ng.ken.gamecalc.utils.DialogUtils.confirm;
@@ -26,6 +25,7 @@ import android.widget.Button;
 import java.util.Arrays;
 
 import ng.ken.gamecalc.R;
+import static ng.ken.gamecalc.utils.StringHelper.getBig2Title;
 
 public class Big2ScoresAdapter extends BaseAdapter {
 
@@ -113,10 +113,11 @@ public class Big2ScoresAdapter extends BaseAdapter {
 
 
     private void sumUpGame(View view) {
+        double avg = Arrays.stream(big2Game.getSum()).average().orElse(0);
         confirmWithView(
                 context,
-                BIG2_SCORE_SUMMARY,
-                sumUpView(context, big2Game.getSum()),
+                getBig2Title(avg),
+                sumUpView(context, big2Game.getSum(), avg),
                 BIG2_NEW_A_GAME,
                 (a, b) -> {
                     big2Game.cleanScores();

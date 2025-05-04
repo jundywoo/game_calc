@@ -1,5 +1,10 @@
 package ng.ken.gamecalc;
 
+import static ng.ken.gamecalc.utils.Constants.GAMES;
+import static ng.ken.gamecalc.utils.Constants.GAME_BIG2;
+import static ng.ken.gamecalc.utils.Constants.GAME_DICE;
+import static ng.ken.gamecalc.utils.Constants.GAME_TRACTOR;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +20,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.Map;
+import java.util.Optional;
+
 import ng.ken.gamecalc.big2.Big2Fragment;
+import ng.ken.gamecalc.dice.DiceFragment;
 import ng.ken.gamecalc.tractor.TractorFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,11 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 将 TabLayout 和 ViewPager2 绑定
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            if (position == 0) {
-                tab.setText("鋤大D");
-            } else if (position == 1) {
-                tab.setText("拖拉機");
-            }
+            tab.setText(GAMES[position]);
         }).attach();
 
         // 监听标签页切换并保存当前索引
@@ -64,26 +69,27 @@ public class MainActivity extends AppCompatActivity {
     // ViewPager2 的适配器
     private static class ViewPagerAdapter extends FragmentStateAdapter {
 
-        private final Context context;
+        private final Map<String, Fragment> fragments;
 
         public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
-            context = fragmentActivity;
+
+            fragments = Map.of(
+                    GAME_BIG2, new Big2Fragment(fragmentActivity),
+                    GAME_TRACTOR, new TractorFragment(fragmentActivity),
+                    GAME_DICE, new DiceFragment(fragmentActivity)
+            );
         }
 
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            if (position == 0) {
-                return new Big2Fragment(context); // 锄大D
-            } else {
-                return new TractorFragment(context); // 拖拉机
-            }
+            return Optional.ofNullable(fragments.get(GAMES[position])).orElse(new Fragment());
         }
 
         @Override
         public int getItemCount() {
-            return 2; // 两个标签页
+            return GAMES.length; // 两个标签页
         }
     }
 
