@@ -8,9 +8,11 @@ public class Constants {
 
     public static final String GAME_BIG2 = "鋤大D";
     public static final String GAME_TRACTOR = "拖拉機";
-    public static final String GAME_DICE = "色子";
+    public static final String GAME_DICE = "碌色子";
+    public static final String GAME_POINTS_24 = "24點";
+
     public static final String[] GAMES = new String[] {
-            GAME_BIG2, GAME_TRACTOR, GAME_DICE
+            GAME_BIG2, GAME_TRACTOR, GAME_POINTS_24, GAME_DICE
     };
 
     public static final String UNDERSTOOD = "明白";

@@ -3,6 +3,7 @@ package ng.ken.gamecalc;
 import static ng.ken.gamecalc.utils.Constants.GAMES;
 import static ng.ken.gamecalc.utils.Constants.GAME_BIG2;
 import static ng.ken.gamecalc.utils.Constants.GAME_DICE;
+import static ng.ken.gamecalc.utils.Constants.GAME_POINTS_24;
 import static ng.ken.gamecalc.utils.Constants.GAME_TRACTOR;
 
 import android.content.Context;
@@ -25,6 +26,7 @@ import java.util.Optional;
 
 import ng.ken.gamecalc.big2.Big2Fragment;
 import ng.ken.gamecalc.dice.DiceFragment;
+import ng.ken.gamecalc.points24.Points24Fragment;
 import ng.ken.gamecalc.tractor.TractorFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             fragments = Map.of(
                     GAME_BIG2, new Big2Fragment(fragmentActivity),
                     GAME_TRACTOR, new TractorFragment(fragmentActivity),
+                    GAME_POINTS_24, new Points24Fragment(fragmentActivity),
                     GAME_DICE, new DiceFragment(fragmentActivity)
             );
         }

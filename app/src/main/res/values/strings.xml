@@ -15,4 +15,11 @@
     <string name="roll_dice"> 碌 </string>
     <string name="reduce_dice"> - </string>
     <string name="add_dice"> + </string>
+    <string name="waiting_result">點計算獲取結果。。。</string>
+    <string name="compute">計算</string>
+    <string name="reset">重置</string>
+    <string name="points24_card_1">卡牌 1</string>
+    <string name="points24_card_2">卡牌 2</string>
+    <string name="points24_card_3">卡牌 3</string>
+    <string name="points24_card_4">卡牌 4</string>
 </resources>
